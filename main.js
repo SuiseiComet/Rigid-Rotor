@@ -326,11 +326,12 @@ function update()
     atom2_mesh.material.color.set(`rgb(${atom2.color[0]},${atom2.color[1]},${atom2.color[2]})`)
     outlineMesh1.material.color.set(`rgb(${atom1.outline_color[0]},${atom1.outline_color[1]},${atom1.outline_color[2]})`)
     outlineMesh2.material.color.set(`rgb(${atom2.outline_color[0]},${atom2.outline_color[1]},${atom2.outline_color[2]})`)
+    /*
     atom1_mesh.material.needsUpdate = true;
     atom2_mesh.material.needsUpdate = true;
     outlineMesh1.material.needsUpdate = true;
     outlineMesh2.material.needsUpdate = true;
-
+    */
 
     let x1 = (atom1.dist_from_center + simulation.distance_between_atoms) 
         * Math.cos(-frame_count);
