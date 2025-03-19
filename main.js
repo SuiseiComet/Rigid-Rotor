@@ -49,9 +49,9 @@ const simulation = {
     beta_angle: 0,
     rotational_speed: 5,
     center_bar: true,
-    enable_axis: false,
+    enable_axis: true,
     enable_grid: true,
-    enable_rotation_controls: true,
+    enable_rotation_controls: false,
     rotation_matrix: new THREE.Euler(0,0,0),
     distance_between_atoms: 30,
 }
