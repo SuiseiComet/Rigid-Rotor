@@ -11,7 +11,7 @@ var atom1_mesh, atom2_mesh, outlineMesh1, outlineMesh2, arrowMesh, center_bar_me
 var xAxis, yAxis, zAxis;
 var xzgrid;
 
-const gui = new dat.GUI( {width : 350} )
+const gui = new dat.GUI( {width : 400} )
 gui.domElement.id = 'gui';
 
 const MILLISECONDS_IN_SECOND = 1000
@@ -117,8 +117,8 @@ function init(){
 
     // GUI
     const simulationFolder = gui.addFolder('Simulation Settings')
-    var alpha_angle_cont = simulationFolder.add(simulation, 'alpha_angle', -180, 180).step(1).name('Alpha Angle')
-    var beta_angle_cont = simulationFolder.add(simulation, 'beta_angle', -180, 180).step(1).name('Beta Angle')
+    var alpha_angle_cont = simulationFolder.add(simulation, 'alpha_angle', -360, 360).step(1).name('Rotation around X-axis')
+    var beta_angle_cont = simulationFolder.add(simulation, 'beta_angle', -360, 360).step(1).name('Rotation around Y-axis')
     simulationFolder.add(simulation, 'rotational_speed', -10, 10).step(0.01).name('Rotational Speed')
     simulationFolder.add(simulation, 'center_bar', false,true).name('Show Center Bar')
     simulationFolder.add(simulation, 'enable_rotation_controls', false,true).name('Show Rotation Controls')
@@ -150,6 +150,7 @@ function init(){
         simulation.distance_between_atoms = 30;
         camera.position.set(0,50,70);
         camera.lookAt(scene.position);
+        gui.updateDisplay()
     }};
     simulationFolder.add(obj,'Click_here_to_reset');
 
@@ -266,7 +267,7 @@ function init(){
     beta_angle_cont.onChange(function(value) {
         simulation.rotation_matrix.z = value * (Math.PI / 180);
         arrowMesh.rotation.z = value * (Math.PI / 180)
-        alpha_angle_cont.updateDisplay()
+        beta_angle_cont.updateDisplay()
     });
 
     // Add the axes to the scene
