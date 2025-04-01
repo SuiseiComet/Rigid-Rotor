@@ -117,8 +117,8 @@ function init(){
 
     // GUI
     const simulationFolder = gui.addFolder('Simulation Settings')
-    var alpha_angle_cont = simulationFolder.add(simulation, 'alpha_angle', -360, 360).step(1).name('Rotation around X-axis')
-    var beta_angle_cont = simulationFolder.add(simulation, 'beta_angle', -360, 360).step(1).name('Rotation around Y-axis')
+    var alpha_angle_cont = simulationFolder.add(simulation, 'alpha_angle', 0, 360).step(1).name('Phi (Φ)')
+    var beta_angle_cont = simulationFolder.add(simulation, 'beta_angle', 0, 180).step(1).name('Theta (θ)')
     simulationFolder.add(simulation, 'rotational_speed', -10, 10).step(0.01).name('Rotational Speed')
     simulationFolder.add(simulation, 'center_bar', false,true).name('Show Center Bar')
     simulationFolder.add(simulation, 'enable_rotation_controls', false,true).name('Show Rotation Controls')
@@ -259,14 +259,14 @@ function init(){
     zAxis.rotateX(Math.PI/2);
 
     alpha_angle_cont.onChange(function(value) {
-        simulation.rotation_matrix.x = value * (Math.PI / 180);
-        arrowMesh.rotation.x = value * (Math.PI / 180)
+        simulation.rotation_matrix.y = value * (Math.PI / 180);
+        arrowMesh.rotation.y = value * (Math.PI / 180)
         alpha_angle_cont.updateDisplay()
     });
 
     beta_angle_cont.onChange(function(value) {
-        simulation.rotation_matrix.z = value * (Math.PI / 180);
-        arrowMesh.rotation.z = value * (Math.PI / 180)
+        simulation.rotation_matrix.z = -value * (Math.PI / 180);
+        arrowMesh.rotation.z = -value * (Math.PI / 180)
         beta_angle_cont.updateDisplay()
     });
 
